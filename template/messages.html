@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+{% load static  %}
+<html>
+<head>
+<meta charset="UTF-8">
+<title>WorkWise Html Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/line-awesome.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/line-awesome-font-awesome.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'lib/slick/slick.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'lib/slick/slick-theme.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+</head>
+
+
+<body>
+	
+
+	<div class="wrapper">
+		
+
+
+		<header>
+			<div class="container">
+				<div class="header-data" >
+
+
+					<div class="menu-btn">
+						<a href="#" title=""><i class="fa fa-bars"></i></a>
+					</div><!--menu-btn end-->
+					<div class="user-account" >
+						<div class="user-info">
+							<img src="http://via.placeholder.com/30x30" alt="">
+							<a href="#" title="">{{user.username}}</a>
+							<i class="la la-sort-down"></i>
+						</div>
+						<div class="user-account-settingss" style="background-color: grey">
+							<h3>Online Status</h3>
+							<ul class="on-off-status">
+								<li>
+									<div class="fgt-sec">
+										<input type="radio" name="cc" id="c5">
+										<label for="c5">
+											<span></span>
+										</label>
+										<small>Online</small>
+									</div>
+								</li>
+								<li>
+									<div class="fgt-sec">
+										<input type="radio" name="cc" id="c6">
+										<label for="c6">
+											<span></span>
+										</label>
+										<small>Offline</small>
+									</div>
+								</li>
+							</ul>
+
+
+							<h3 class="tc"><a href="logout/" title="">Logout</a></h3>
+						</div><!--user-account-settingss end-->
+					</div>
+				</div><!--header-data end-->
+			</div>
+		</header><!--header end-->	
+
+
+
+		<section class="messages-page">
+			<div class="container">
+				<div class="messages-sec">
+					<div class="row">
+						<div class="col-lg-4 col-md-12 no-pdd">
+							<div class="msgs-list">
+								<div class="msg-title">
+									<h3>Messages</h3>
+									<ul>
+										<li><a href="#" title=""><i class="fa fa-cog"></i></a></li>
+										<li><a href="#" title=""><i class="fa fa-ellipsis-v"></i></a></li>
+									</ul>
+								</div><!--msg-title end-->
+								<div class="messages-list">
+									<ul id='user_ul'>
+										{% for i in online_user %}
+										<li id="user_li_{{i.id}}" onclick="user_msg( '{{i.id}}', '{{i.username}}')">
+											<div class="usr-msg-details">
+												<div class="usr-ms-img">
+													<img src="http://via.placeholder.com/50x50" alt="">
+													<span class="msg-status"></span>
+												</div>
+												<div class="usr-mg-info">
+
+													<h3>{{i.username}}</h3>
+													<p>Lorem ipsum dolor <img src="images/smley.png" alt=""></p>
+												</div><!--usr-mg-info end-->
+												<span class="posted_time">1:55 PM</span>
+												<span class="msg-notifc">1</span>
+											</div><!--usr-msg-details end-->
+										</li>
+										{% endfor %}
+
+									</ul>
+								</div><!--messages-list end-->
+							</div><!--msgs-list end-->
+						</div>
+						<div class="col-lg-8 col-md-12 pd-right-none pd-left-none">
+							<div class="main-conversation-box">
+								<div class="message-bar-head">
+									<div class="usr-msg-details">
+										<div class="usr-ms-img">
+											<img src="http://via.placeholder.com/50x50" alt="">
+										</div>
+										<div class="usr-mg-info">
+											<input type="hidden" id="user_id">
+											<input type="hidden" id="user_room">
+											<h3 id="user_name">John Doe</h3>
+											<p>Online</p>
+										</div><!--usr-mg-info end-->
+									</div>
+									<a href="#" title=""><i class="fa fa-ellipsis-v"></i></a>
+								</div><!--message-bar-head end-->
+								<div class="messages-line" id="msg_containt">
+									
+												
+						
+								</div><!--messages-line end-->
+								<div class="message-send-area">
+										<div class="mf-field">
+											<input id="chat-message-input" type="text" size="100"  placeholder="Type a message here">
+											<button id="msg_submit" onclick="msg_send()">Send</button>
+										</div>
+										
+								</div><!--message-send-area end-->
+							</div><!--main-conversation-box end-->
+						</div>
+					</div>
+				</div><!--messages-sec end-->
+			</div>
+		</section><!--messages-page end-->
+
+
+
+
+	</div><!--theme-layout end-->
+
+
+
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/popper.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.mCustomScrollbar.js' %}"></script>
+<script type="text/javascript" src="{% static 'lib/slick/slick.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/scrollbar.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+<script type="text/javascript">
+	function user_msg(id, room) {
+		for (const li of document.querySelectorAll('#user_ul>li')) {
+	    	li.className  = '';
+			}
+		$('#user_li_'+id).attr('class', 'active');
+		$('#user_name').html(room);
+		$('#user_id').val(id);
+		$('#user_room').val('{{user.username}}_'+room);
+		var room = $('#user_room').val();
+	    const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/chat/'
+            + room
+            + '/GET/1/'
+        );
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            
+            for (i in  data.messages) {
+            	console.log('data ========= ',data.messages[i], typeof data.messages[i]);
+            }
+            
+            };
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+	};
+
+		function msg_send() {
+	    var room = $('#user_room').val();
+	    const chatSocket = new WebSocket(
+            'ws://'
+            + window.location.host
+            + '/ws/chat/'
+            + room
+            + '/POST/1/'
+        );
+        chatSocket.onmessage = function(e) {
+            const data = JSON.parse(e.data);
+            const html = '<div class="main-message-box ta-right">\
+										<div class="message-dt">\
+											<div class="message-inner-dt">\
+												<p>'+data.message+'</p>\
+											</div>\
+											<span>Sat, Aug 23, 1:08 PM</span>\
+										</div>\
+										<div class="messg-usr-img">\
+											<img src="http://via.placeholder.com/50x50" alt="">\
+										</div>\
+									</div>'
+            // document.getElementById("msg_containt").innerHTML += html; 
+            document.querySelector('#msg_containt').innerHTML += html;
+        };
+        chatSocket.onclose = function(e) {
+            console.error('Chat socket closed unexpectedly');
+        };
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#msg_submit').click();
+            }
+        };
+        document.querySelector('#msg_submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'sender': {{user.id}},
+                'receiver': $('#user_id').val(),
+                'room': $('#user_room').val(),
+            }));
+            messageInputDom.value = '';
+        };
+    };
+
+</script>
+</body>
+</html>
